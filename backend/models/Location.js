@@ -1,0 +1,31 @@
+const mongoose = require('mongoose');
+
+const locationSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, 'Location name is required'],
+      unique: true,
+      trim: true,
+    },
+    building: {
+      type: String,
+      required: [true, 'Building name is required'],
+      trim: true,
+    },
+    description: {
+      type: String,
+      default: 'Approved safe campus learning area with student seating and lighting.',
+      trim: true,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = mongoose.model('Location', locationSchema);
