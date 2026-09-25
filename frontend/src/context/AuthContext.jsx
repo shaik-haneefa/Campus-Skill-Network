@@ -45,8 +45,15 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
+    // Resolve socket server URL dynamically
+    const socketUrl =
+      import.meta.env.VITE_SOCKET_URL ||
+      (import.meta.env.PROD || (typeof window !== 'undefined' && !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1'))
+        ? 'https://campus-skill-network-aowk.onrender.com'
+        : window.location.origin);
+
     // Connect socket
-    const newSocket = io(window.location.origin, {
+    const newSocket = io(socketUrl, {
       transports: ['websocket', 'polling'],
     });
 

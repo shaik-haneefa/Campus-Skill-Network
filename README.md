@@ -261,6 +261,35 @@ The login page contains **1-click quick-fill buttons** for fast evaluation:
 
 ---
 
+## 🚀 Cloud Production Deployment (Render & Vercel)
+
+The Campus Skill Network is fully configured for zero-config production deployment:
+
+### Backend Deployment (Render)
+1. Create a **Web Service** on [Render](https://render.com) connected to your GitHub repository.
+2. **Root Directory**: `backend`
+3. **Build Command**: `npm install`
+4. **Start Command**: `node server.js`
+5. **Environment Variables**:
+   - `NODE_ENV`: `production`
+   - `PORT`: `5000` (or leave default for Render)
+   - `CLIENT_URL`: `https://campus-skill-network-k7seah5uq-lms-89f6.vercel.app` (or your custom Vercel domain)
+   - `MONGODB_URI`: `mongodb+srv://<username>:<password>@cluster0.b6ufgvv.mongodb.net/campus-skill-network?retryWrites=true&w=majority`
+   - `JWT_SECRET`: `<your_production_jwt_secret>`
+   - `COLLEGE_EMAIL_DOMAIN`: `@college.edu`
+
+### Frontend Deployment (Vercel)
+1. Import your GitHub repository into [Vercel](https://vercel.com).
+2. **Root Directory**: `frontend`
+3. **Framework Preset**: `Vite`
+4. **Build Command**: `npm run build`
+5. **Output Directory**: `dist`
+6. **Environment Variables**:
+   - `VITE_API_URL`: `https://campus-skill-network-aowk.onrender.com/api`
+   - `VITE_SOCKET_URL`: `https://campus-skill-network-aowk.onrender.com`
+
+---
+
 ## ☁️ MongoDB Atlas Cloud Setup
 
 For detailed instructions on creating a free MongoDB Atlas cluster, whitelisting IP access, creating database credentials, and obtaining your connection string, see [docs/MONGODB_ATLAS_GUIDE.md](docs/MONGODB_ATLAS_GUIDE.md).
