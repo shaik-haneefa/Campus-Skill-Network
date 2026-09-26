@@ -44,6 +44,7 @@ const AppRoutes = () => {
       <Route path="/skills" element={<Skills />} />
       <Route path="/mentors" element={<MentorSearch />} />
       <Route path="/mentor/:id" element={<MentorProfile />} />
+      <Route path="/mentors/:id" element={<MentorProfile />} />
 
       {/* Protected Student Routes */}
       <Route

@@ -76,16 +76,16 @@ const Requests = () => {
   const currentList = activeTab === 'received' ? receivedRequests : sentRequests;
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
       {/* Header */}
       <div className="mb-8">
-        <span className="text-xs font-extrabold uppercase tracking-widest text-indigo-600 block mb-1">
+        <span className="text-xs font-extrabold uppercase tracking-widest text-[#38BDF8] block mb-1">
           Peer Exchange Workflow
         </span>
-        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
           Mentorship Requests
         </h1>
-        <p className="text-sm text-slate-500 mt-1">
+        <p className="text-sm text-[#94A3B8] mt-1">
           Manage incoming requests from peers and track requests you sent to mentors
         </p>
       </div>
@@ -95,22 +95,22 @@ const Requests = () => {
         <div
           className={`mb-6 p-4 rounded-2xl flex items-center justify-between text-sm ${
             alertMessage.type === 'success'
-              ? 'bg-emerald-50 border border-emerald-100 text-emerald-800'
-              : 'bg-rose-50 border border-rose-100 text-rose-800'
+              ? 'bg-emerald-950/60 border border-emerald-500/30 text-emerald-400'
+              : 'bg-rose-950/60 border border-rose-500/30 text-rose-400'
           }`}
         >
           <div className="flex items-center gap-2">
             {alertMessage.type === 'success' ? (
-              <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+              <CheckCircle2 className="w-5 h-5 text-emerald-400" />
             ) : (
-              <AlertCircle className="w-5 h-5 text-rose-500" />
+              <AlertCircle className="w-5 h-5 text-rose-400" />
             )}
             <span>{alertMessage.text}</span>
           </div>
           <button
             type="button"
             onClick={() => setAlertMessage({ type: '', text: '' })}
-            className="text-xs font-bold underline"
+            className="text-xs font-bold underline hover:text-white transition-colors"
           >
             Dismiss
           </button>
@@ -118,20 +118,20 @@ const Requests = () => {
       )}
 
       {/* Tabs */}
-      <div className="flex items-center gap-3 border-b border-slate-200 mb-8">
+      <div className="flex items-center gap-3 border-b border-white/10 mb-8">
         <button
           type="button"
           onClick={() => setActiveTab('received')}
-          className={`pb-3 text-sm font-bold flex items-center gap-2 border-b-2 transition-colors ${
+          className={`pb-3.5 text-sm font-bold flex items-center gap-2 border-b-2 transition-all ${
             activeTab === 'received'
-              ? 'border-indigo-600 text-indigo-600'
-              : 'border-transparent text-slate-500 hover:text-slate-800'
+              ? 'border-blue-500 text-[#60A5FA]'
+              : 'border-transparent text-[#94A3B8] hover:text-[#F8FAFC]'
           }`}
         >
           <Inbox className="w-4 h-4" />
           <span>Incoming Requests (As Mentor)</span>
           {receivedRequests.filter((r) => r.status === 'pending').length > 0 && (
-            <span className="px-2 py-0.5 rounded-full text-xs bg-indigo-100 text-indigo-800 font-bold">
+            <span className="px-2 py-0.5 rounded-full text-xs bg-blue-500/20 text-[#60A5FA] font-bold border border-blue-500/30">
               {receivedRequests.filter((r) => r.status === 'pending').length}
             </span>
           )}
@@ -140,16 +140,16 @@ const Requests = () => {
         <button
           type="button"
           onClick={() => setActiveTab('sent')}
-          className={`pb-3 text-sm font-bold flex items-center gap-2 border-b-2 transition-colors ${
+          className={`pb-3.5 text-sm font-bold flex items-center gap-2 border-b-2 transition-all ${
             activeTab === 'sent'
-              ? 'border-indigo-600 text-indigo-600'
-              : 'border-transparent text-slate-500 hover:text-slate-800'
+              ? 'border-blue-500 text-[#60A5FA]'
+              : 'border-transparent text-[#94A3B8] hover:text-[#F8FAFC]'
           }`}
         >
           <Send className="w-4 h-4" />
           <span>Sent Requests (As Learner)</span>
           {sentRequests.length > 0 && (
-            <span className="px-2 py-0.5 rounded-full text-xs bg-slate-100 text-slate-700 font-bold">
+            <span className="px-2 py-0.5 rounded-full text-xs bg-white/[0.06] text-[#CBD5E1] font-bold border border-white/10">
               {sentRequests.length}
             </span>
           )}
@@ -174,12 +174,12 @@ const Requests = () => {
           ))}
         </div>
       ) : (
-        <div className="py-16 text-center rounded-3xl bg-white border border-slate-200/80 p-8 shadow-card">
-          <Inbox className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-slate-800">
+        <div className="py-16 text-center rounded-3xl bg-[#080B18]/80 backdrop-blur-xl border border-white/10 p-8 shadow-2xl">
+          <Inbox className="w-12 h-12 text-[#60A5FA]/30 mx-auto mb-3" />
+          <h3 className="text-base font-bold text-[#F8FAFC]">
             {activeTab === 'received' ? 'No incoming mentorship requests' : 'No requests sent yet'}
           </h3>
-          <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+          <p className="text-xs text-[#94A3B8] mt-1 max-w-sm mx-auto">
             {activeTab === 'received'
               ? 'When students discover your skills in the directory, their requests will appear here.'
               : 'Explore the skills directory or find a mentor to request 1-on-1 peer learning sessions.'}

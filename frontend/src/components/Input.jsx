@@ -24,15 +24,15 @@ const Input = ({
       {label && (
         <label
           htmlFor={inputId}
-          className="block text-sm font-medium text-slate-700 mb-1.5"
+          className="block text-sm font-semibold text-[#CBD5E1] mb-1.5"
         >
-          {label} {required && <span className="text-rose-500">*</span>}
+          {label} {required && <span className="text-rose-400">*</span>}
         </label>
       )}
 
       <div className="relative rounded-xl shadow-sm">
         {Icon && (
-          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#94A3B8]">
             <Icon className="h-5 w-5" />
           </div>
         )}
@@ -51,10 +51,10 @@ const Input = ({
             ${endAdornment ? 'pr-11' : 'pr-3.5'} 
             ${
               error
-                ? 'border-rose-300 text-rose-900 placeholder-rose-300 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500 bg-rose-50/30'
-                : 'border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 bg-white hover:border-slate-300'
+                ? 'border-rose-500/50 text-rose-200 placeholder-rose-400/50 focus:outline-none focus:ring-2 focus:ring-rose-500/25 focus:border-rose-500 bg-rose-950/20'
+                : 'border-white/15 text-[#F8FAFC] placeholder-[#94A3B8] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/25 focus:border-[#3B82F6] bg-[#080B18]/90 hover:border-white/25'
             }
-            ${disabled ? 'bg-slate-50 text-slate-500 cursor-not-allowed' : ''}
+            ${disabled ? 'bg-[#050713]/60 text-slate-500 cursor-not-allowed border-white/5' : ''}
           `}
           {...props}
         />
@@ -67,9 +67,9 @@ const Input = ({
       </div>
 
       {error ? (
-        <p className="mt-1.5 text-xs text-rose-600 font-medium">{error}</p>
+        <p className="mt-1.5 text-xs text-rose-400 font-medium">{error}</p>
       ) : helperText ? (
-        <p className="mt-1.5 text-xs text-slate-500">{helperText}</p>
+        <p className="mt-1.5 text-xs text-[#94A3B8]">{helperText}</p>
       ) : null}
     </div>
   );

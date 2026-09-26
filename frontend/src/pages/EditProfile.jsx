@@ -70,33 +70,37 @@ const EditProfile = () => {
         <button
           type="button"
           onClick={() => navigate('/profile')}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-900 mb-3"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#94A3B8] hover:text-[#60A5FA] mb-3 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Profile
         </button>
-        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
           Edit Student Profile
         </h1>
-        <p className="text-xs text-slate-500 mt-1">
+        <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
           Keep your campus information and bio up to date for peers
         </p>
       </div>
 
-      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-card">
+      <div className="bg-[#080B18]/80 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl relative overflow-hidden">
+        {/* Glow accent */}
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
+
         {success && (
-          <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center gap-2.5 text-emerald-800 text-sm font-semibold">
-            <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+          <div className="mb-6 p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex items-center gap-2.5 text-emerald-400 text-sm font-semibold">
+            <CheckCircle2 className="w-5 h-5 text-emerald-400" />
             <span>{success}</span>
           </div>
         )}
 
         {error && (
-          <div className="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-100 text-rose-700 text-sm font-semibold">
+          <div className="mb-6 p-4 rounded-xl bg-rose-950/40 border border-rose-500/30 text-rose-400 text-sm font-semibold">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
           <Input
             label="Full Name"
             name="name"
@@ -108,17 +112,17 @@ const EditProfile = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5 uppercase tracking-wider">
                 Department
               </label>
               <select
                 name="department"
                 value={formData.department}
                 onChange={handleChange}
-                className="block w-full rounded-xl border border-slate-200 text-sm py-2.5 px-3.5 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+                className="block w-full rounded-xl border border-white/10 text-sm py-2.5 px-3.5 bg-[#0B1024]/90 text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
               >
                 {departmentsList.map((dept) => (
-                  <option key={dept} value={dept}>
+                  <option key={dept} value={dept} className="bg-[#080B18] text-[#F8FAFC]">
                     {dept}
                   </option>
                 ))}
@@ -126,17 +130,17 @@ const EditProfile = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">
+              <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5 uppercase tracking-wider">
                 Academic Year
               </label>
               <select
                 name="year"
                 value={formData.year}
                 onChange={handleChange}
-                className="block w-full rounded-xl border border-slate-200 text-sm py-2.5 px-3.5 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+                className="block w-full rounded-xl border border-white/10 text-sm py-2.5 px-3.5 bg-[#0B1024]/90 text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
               >
                 {yearsList.map((yr) => (
-                  <option key={yr} value={yr}>
+                  <option key={yr} value={yr} className="bg-[#080B18] text-[#F8FAFC]">
                     {yr}
                   </option>
                 ))}
@@ -163,7 +167,7 @@ const EditProfile = () => {
           />
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1.5">
+            <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5 uppercase tracking-wider">
               Bio / Introduction
             </label>
             <textarea
@@ -172,11 +176,11 @@ const EditProfile = () => {
               value={formData.bio}
               onChange={handleChange}
               placeholder="Tell your college peers what you love doing, learning, or teaching..."
-              className="block w-full rounded-xl border border-slate-200 text-sm py-2.5 px-3.5 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+              className="block w-full rounded-xl border border-white/10 text-sm py-2.5 px-3.5 bg-[#0B1024]/90 text-[#F8FAFC] placeholder:text-[#94A3B8]/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
             />
           </div>
 
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100">
+          <div className="flex items-center justify-end gap-3 pt-5 border-t border-white/10">
             <Button
               variant="outline"
               size="md"

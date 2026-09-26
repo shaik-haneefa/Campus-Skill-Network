@@ -33,24 +33,24 @@ const Modal = ({
     <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-[#050713]/80 backdrop-blur-md transition-opacity"
         onClick={onClose}
       />
 
       <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
         <div
-          className={`relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all w-full ${maxWidth} my-8 border border-slate-100`}
+          className={`relative transform overflow-hidden rounded-3xl bg-[#0B1024] text-left shadow-2xl transition-all w-full ${maxWidth} my-8 border border-white/15 text-[#F8FAFC]`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
           {(title || showCloseButton) && (
-            <div className="flex items-center justify-between border-b border-slate-100 px-6 py-4">
-              <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
+            <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+              <h3 className="text-lg font-bold text-[#F8FAFC]">{title}</h3>
               {showCloseButton && (
                 <button
                   type="button"
                   onClick={onClose}
-                  className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 focus:outline-none transition-colors"
+                  className="rounded-xl p-1.5 text-[#94A3B8] hover:bg-white/[0.08] hover:text-[#F8FAFC] focus:outline-none transition-colors border border-transparent hover:border-white/10"
                 >
                   <X className="h-5 w-5" />
                 </button>

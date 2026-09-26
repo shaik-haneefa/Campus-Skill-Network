@@ -2,49 +2,139 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --app-bg: #050713;
+  --app-surface: #080B18;
+  --app-card: #0B1024;
+  --app-card-hover: #0F172A;
+  --app-purple: #15102B;
+  --app-border: rgba(255, 255, 255, 0.10);
+  --app-border-subtle: rgba(148, 163, 184, 0.18);
+  --app-primary: #2563EB;
+  --app-primary-bright: #3B82F6;
+  --app-primary-light: #60A5FA;
+  --app-cyan: #38BDF8;
+  --app-purple-accent: #7C3AED;
+  --app-purple-light: #A78BFA;
+  --app-text-main: #F8FAFC;
+  --app-text-secondary: #CBD5E1;
+  --app-text-muted: #94A3B8;
+}
+
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 font-sans antialiased;
+    background-color: var(--app-bg);
+    color: var(--app-text-main);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
   }
 }
 
-/* Custom scrollbars */
+/* Custom modern dark scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #050713;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #1e293b;
   border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #3b82f6;
+}
+
+/* Global atmospheric layered gradient mesh */
+.bg-radial-atmosphere {
+  background-color: #050713;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(29, 78, 216, 0.16), transparent 40%),
+    radial-gradient(circle at 90% 15%, rgba(124, 58, 237, 0.14), transparent 42%),
+    radial-gradient(circle at 50% 60%, rgba(56, 189, 248, 0.08), transparent 48%),
+    radial-gradient(circle at 80% 85%, rgba(124, 58, 237, 0.10), transparent 45%);
 }
 
 /* Gradient text utilities */
 .text-gradient {
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #06b6d4 100%);
+  background: linear-gradient(135deg, #60A5FA 0%, #38BDF8 50%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #93C5FD 0%, #3B82F6 50%, #2563EB 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-purple {
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  background: linear-gradient(135deg, #C4B5FD 0%, #8B5CF6 50%, #7C3AED 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Glassmorphism */
+/* Glassmorphism Classes */
+.glass-navbar {
+  background: rgba(15, 18, 35, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+}
+
 .glass-card {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(11, 16, 36, 0.70);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.45);
+}
+
+.glass-card:hover {
+  border-color: rgba(59, 130, 246, 0.40);
+  box-shadow: 0 12px 35px -5px rgba(37, 99, 235, 0.20);
+}
+
+.glass-panel {
+  background: rgba(8, 11, 24, 0.80);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+/* Reusable Button Styling */
+.campus-primary-btn {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px -2px rgba(37, 99, 235, 0.4);
+  transition: all 0.2s ease-in-out;
+}
+
+.campus-primary-btn:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  box-shadow: 0 6px 20px -2px rgba(37, 99, 235, 0.6);
+  transform: translateY(-1px);
+}
+
+.campus-secondary-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all 0.2s ease-in-out;
+}
+
+.campus-secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(96, 165, 250, 0.5);
+  color: #60a5fa;
+  transform: translateY(-1px);
 }

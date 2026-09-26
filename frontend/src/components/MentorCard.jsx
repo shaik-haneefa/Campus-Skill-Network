@@ -5,14 +5,15 @@ import RatingStars from './RatingStars';
 import Button from './Button';
 
 const levelColors = {
-  Beginner: 'bg-slate-100 text-slate-700',
-  Intermediate: 'bg-blue-50 text-blue-700 border-blue-100',
-  Advanced: 'bg-indigo-50 text-indigo-700 border-indigo-100',
-  Expert: 'bg-emerald-50 text-emerald-700 border-emerald-100',
+  Beginner: 'bg-slate-800 text-slate-300 border-slate-700',
+  Intermediate: 'bg-blue-500/10 text-[#60A5FA] border-blue-500/25',
+  Advanced: 'bg-purple-500/10 text-[#A78BFA] border-purple-500/25',
+  Expert: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
 };
 
 const MentorCard = ({ mentor, onRequestClick }) => {
-  const initials = mentor.name
+  const mentorId = mentor?._id || mentor?.id;
+  const initials = mentor?.name
     ? mentor.name
         .split(' ')
         .map((n) => n[0])
@@ -22,7 +23,7 @@ const MentorCard = ({ mentor, onRequestClick }) => {
     : 'ST';
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-card hover:shadow-soft-lg hover:border-indigo-200 transition-all duration-300 flex flex-col justify-between group">
+    <div className="bg-[#0B1024]/75 backdrop-blur-xl rounded-2xl border border-white/10 p-5 shadow-xl hover:shadow-2xl hover:border-blue-500/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
       <div>
         {/* Mentor Top Info */}
         <div className="flex items-start gap-3.5 mb-4">
@@ -31,52 +32,52 @@ const MentorCard = ({ mentor, onRequestClick }) => {
               <img
                 src={mentor.profileImage}
                 alt={mentor.name}
-                className="w-14 h-14 rounded-2xl object-cover border-2 border-indigo-100 shadow-sm"
+                className="w-14 h-14 rounded-2xl object-cover border-2 border-white/15 shadow-md"
               />
             ) : (
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-bold text-base shadow-sm">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center text-white font-bold text-base shadow-lg shadow-blue-500/20 border border-white/15">
                 {initials}
               </div>
             )}
-            <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white" title="Active Student" />
+            <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-400 border-2 border-[#0B1024]" title="Active Student" />
           </div>
 
           <div className="flex-1 min-w-0">
             <Link
-              to={`/mentor/${mentor._id}`}
-              className="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition-colors truncate block"
+              to={`/mentor/${mentorId}`}
+              className="text-base font-bold text-[#F8FAFC] group-hover:text-[#60A5FA] transition-colors truncate block"
             >
               {mentor.name}
             </Link>
-            <div className="flex items-center gap-1.5 text-xs text-slate-500 mt-0.5 truncate">
-              <GraduationCap className="w-3.5 h-3.5 flex-shrink-0 text-slate-400" />
+            <div className="flex items-center gap-1.5 text-xs text-[#CBD5E1] mt-0.5 truncate">
+              <GraduationCap className="w-3.5 h-3.5 flex-shrink-0 text-[#60A5FA]" />
               <span className="truncate">{mentor.department}</span>
             </div>
-            <div className="text-xs text-slate-400 font-medium mt-0.5">
+            <div className="text-xs text-[#94A3B8] font-medium mt-0.5">
               {mentor.year} • {mentor.college?.split(' ')[0] || 'Campus'}
             </div>
           </div>
         </div>
 
         {/* Rating and Stats */}
-        <div className="flex items-center justify-between py-2.5 px-3 rounded-xl bg-slate-50 border border-slate-100 mb-4 text-xs">
+        <div className="flex items-center justify-between py-2.5 px-3 rounded-xl bg-[#080B18]/90 border border-white/10 mb-4 text-xs">
           <RatingStars rating={mentor.rating || 5.0} count={mentor.ratingsCount || 0} size="sm" />
-          <div className="flex items-center gap-1 text-slate-600 font-medium">
-            <Award className="w-3.5 h-3.5 text-indigo-500" />
+          <div className="flex items-center gap-1 text-[#CBD5E1] font-medium">
+            <Award className="w-3.5 h-3.5 text-[#38BDF8]" />
             <span>{mentor.sessionsCompleted || 0} sessions</span>
           </div>
         </div>
 
         {/* Bio */}
         {mentor.bio && (
-          <p className="text-xs text-slate-600 line-clamp-2 mb-4 leading-relaxed italic">
+          <p className="text-xs text-[#94A3B8] line-clamp-2 mb-4 leading-relaxed italic">
             "{mentor.bio}"
           </p>
         )}
 
         {/* Skills Tag list */}
         <div className="mb-4">
-          <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block mb-2">
+          <span className="text-[11px] font-semibold text-[#94A3B8] uppercase tracking-wider block mb-2">
             Skills Offered
           </span>
           <div className="flex flex-wrap gap-1.5">
@@ -85,17 +86,17 @@ const MentorCard = ({ mentor, onRequestClick }) => {
                 <span
                   key={idx}
                   className={`inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-medium border ${
-                    levelColors[sk.level] || 'bg-slate-100 text-slate-700'
+                    levelColors[sk.level] || 'bg-slate-800 text-slate-300 border-slate-700'
                   }`}
                 >
                   {sk.name}
                 </span>
               ))
             ) : (
-              <span className="text-xs text-slate-400">No skills listed yet</span>
+              <span className="text-xs text-[#94A3B8]">No skills listed yet</span>
             )}
             {mentor.skills && mentor.skills.length > 3 && (
-              <span className="text-xs text-slate-400 self-center">
+              <span className="text-xs text-[#94A3B8] self-center">
                 +{mentor.skills.length - 3} more
               </span>
             )}
@@ -104,8 +105,8 @@ const MentorCard = ({ mentor, onRequestClick }) => {
       </div>
 
       {/* Action Buttons */}
-      <div className="pt-3 border-t border-slate-100 flex items-center gap-2">
-        <Link to={`/mentor/${mentor._id}`} className="flex-1">
+      <div className="pt-3 border-t border-white/10 flex items-center gap-2">
+        <Link to={`/mentor/${mentorId}`} className="flex-1">
           <Button variant="outline" size="sm" className="w-full">
             View Profile
           </Button>

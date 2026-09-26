@@ -50,17 +50,17 @@ const Notifications = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <div>
-          <span className="text-xs font-extrabold uppercase tracking-widest text-indigo-600 block mb-1">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-[#38BDF8] block mb-1">
             Real-Time Alerts
           </span>
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
             Notifications
           </h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-[#94A3B8] mt-1">
             Stay updated with mentorship requests, session dates, messages, and feedback
           </p>
         </div>
@@ -90,10 +90,10 @@ const Notifications = () => {
           ))}
         </div>
       ) : (
-        <div className="py-16 text-center rounded-3xl bg-white border border-slate-200/80 p-8 shadow-card">
-          <Bell className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-slate-800">No notifications</h3>
-          <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+        <div className="py-16 text-center rounded-3xl bg-[#080B18]/80 backdrop-blur-xl border border-white/10 p-8 shadow-2xl">
+          <Bell className="w-12 h-12 text-[#60A5FA]/30 mx-auto mb-3" />
+          <h3 className="text-base font-bold text-[#F8FAFC]">No notifications</h3>
+          <p className="text-xs text-[#94A3B8] mt-1 max-w-sm mx-auto">
             You're all caught up! New mentorship alerts and session updates will arrive here.
           </p>
         </div>

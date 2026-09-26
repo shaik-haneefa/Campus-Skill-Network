@@ -57,6 +57,9 @@ const getMentorAvailability = async (req, res) => {
     const slots = await Availability.find(query).sort({ date: 1, startTime: 1 });
     res.json(slots);
   } catch (error) {
+    if (error.kind === 'ObjectId' || error.name === 'CastError') {
+      return res.json([]);
+    }
     res.status(500).json({ message: error.message || 'Error fetching availability' });
   }
 };

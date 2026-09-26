@@ -113,7 +113,7 @@ const ScheduleSession = () => {
   if (!request) {
     return (
       <div className="max-w-xl mx-auto py-16 text-center">
-        <h2 className="text-xl font-bold text-slate-800">Mentorship Request Not Found</h2>
+        <h2 className="text-xl font-bold text-[#F8FAFC]">Mentorship Request Not Found</h2>
         <Link to="/requests" className="mt-4 inline-block">
           <Button variant="outline" size="sm">Back to Requests</Button>
         </Link>
@@ -122,73 +122,76 @@ const ScheduleSession = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
       <Link
         to="/requests"
-        className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-900 mb-6"
+        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#94A3B8] hover:text-[#60A5FA] mb-6 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" /> Back to Requests
       </Link>
 
       <div className="mb-6">
-        <span className="text-xs font-extrabold uppercase tracking-widest text-indigo-600 block mb-1">
+        <span className="text-xs font-extrabold uppercase tracking-widest text-[#38BDF8] block mb-1">
           Confirmed Mentorship Match
         </span>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
           Schedule Session with {request.mentor?.name}
         </h1>
-        <p className="text-xs sm:text-sm text-slate-500 mt-1">
+        <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
           Pick one of your mentor's open time slots and select an approved safe campus meeting spot
         </p>
       </div>
 
-      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-card">
+      <div className="bg-[#080B18]/80 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl relative overflow-hidden">
+        {/* Glow */}
+        <div className="absolute -top-24 -right-24 w-60 h-60 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+
         {/* Mentor & Skill banner */}
-        <div className="p-4 rounded-2xl bg-indigo-50/60 border border-indigo-100 flex items-center justify-between mb-6">
+        <div className="p-4 rounded-2xl bg-[#0B1024]/90 border border-white/10 flex items-center justify-between mb-6 relative z-10">
           <div className="flex items-center gap-3">
             {request.mentor?.profileImage ? (
               <img
                 src={request.mentor.profileImage}
                 alt={request.mentor.name}
-                className="w-12 h-12 rounded-xl object-cover border border-indigo-200"
+                className="w-12 h-12 rounded-xl object-cover border border-white/10"
               />
             ) : (
-              <div className="w-12 h-12 rounded-xl bg-indigo-600 text-white font-bold flex items-center justify-center text-sm">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-600 to-purple-600 text-white font-bold flex items-center justify-center text-sm shadow-md">
                 {request.mentor?.name ? request.mentor.name[0] : 'M'}
               </div>
             )}
             <div>
-              <p className="text-xs text-indigo-600 font-semibold uppercase tracking-wider">Mentor</p>
-              <h3 className="text-sm font-bold text-slate-900">{request.mentor?.name}</h3>
-              <p className="text-xs text-slate-500">{request.mentor?.department}</p>
+              <p className="text-xs text-[#60A5FA] font-semibold uppercase tracking-wider">Mentor</p>
+              <h3 className="text-sm font-bold text-[#F8FAFC]">{request.mentor?.name}</h3>
+              <p className="text-xs text-[#94A3B8]">{request.mentor?.department}</p>
             </div>
           </div>
           <div className="text-right">
-            <span className="text-xs text-slate-400 block mb-0.5">Skill</span>
-            <span className="px-3 py-1 rounded-xl text-xs font-extrabold bg-white text-indigo-700 shadow-xs border border-indigo-100">
+            <span className="text-xs text-[#94A3B8] block mb-0.5">Skill</span>
+            <span className="px-3 py-1 rounded-xl text-xs font-extrabold bg-blue-500/15 text-[#60A5FA] shadow-xs border border-blue-500/25">
               {request.skill}
             </span>
           </div>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-100 text-rose-700 text-xs flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-500" />
+          <div className="mb-6 p-4 rounded-xl bg-rose-950/40 border border-rose-500/30 text-rose-400 text-xs flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-400" />
             <span>{error}</span>
           </div>
         )}
 
         {success && (
-          <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-800 text-xs flex items-center gap-2 font-semibold">
-            <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-500" />
+          <div className="mb-6 p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 text-xs flex items-center gap-2 font-semibold">
+            <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-400" />
             <span>{success}</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
           {/* Step 1: Time slot selection */}
           <div>
-            <label className="block text-sm font-bold text-slate-800 mb-2">
+            <label className="block text-sm font-bold text-[#F8FAFC] mb-2">
               1. Choose a Meeting Time Slot
             </label>
 
@@ -199,8 +202,8 @@ const ScheduleSession = () => {
                     key={slot._id}
                     className={`flex items-center justify-between p-3.5 rounded-2xl border cursor-pointer transition-all ${
                       selectedSlotId === slot._id
-                        ? 'border-indigo-600 bg-indigo-50/50 shadow-xs ring-1 ring-indigo-600'
-                        : 'border-slate-200 hover:bg-slate-50'
+                        ? 'border-blue-500 bg-blue-500/10 shadow-xs ring-1 ring-blue-500'
+                        : 'border-white/10 bg-[#0B1024]/60 hover:bg-[#0B1024]/90'
                     }`}
                   >
                     <div className="flex items-center gap-3">
@@ -209,14 +212,14 @@ const ScheduleSession = () => {
                         name="slotOption"
                         checked={selectedSlotId === slot._id}
                         onChange={() => setSelectedSlotId(slot._id)}
-                        className="text-indigo-600 focus:ring-indigo-500"
+                        className="text-blue-600 focus:ring-blue-500"
                       />
                       <div className="text-xs">
-                        <span className="font-bold text-slate-900 block">{slot.date}</span>
-                        <span className="text-slate-500">{slot.startTime} – {slot.endTime}</span>
+                        <span className="font-bold text-[#F8FAFC] block">{slot.date}</span>
+                        <span className="text-[#94A3B8]">{slot.startTime} – {slot.endTime}</span>
                       </div>
                     </div>
-                    <span className="px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-100 text-emerald-800">
+                    <span className="px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-950/60 text-emerald-400 border border-emerald-500/30">
                       Open Slot
                     </span>
                   </label>
@@ -225,8 +228,8 @@ const ScheduleSession = () => {
                 <label
                   className={`flex items-center gap-3 p-3.5 rounded-2xl border cursor-pointer transition-all ${
                     selectedSlotId === 'custom'
-                      ? 'border-indigo-600 bg-indigo-50/50 shadow-xs'
-                      : 'border-slate-200 hover:bg-slate-50'
+                      ? 'border-blue-500 bg-blue-500/10 shadow-xs'
+                      : 'border-white/10 bg-[#0B1024]/60 hover:bg-[#0B1024]/90'
                   }`}
                 >
                   <input
@@ -234,21 +237,21 @@ const ScheduleSession = () => {
                     name="slotOption"
                     checked={selectedSlotId === 'custom'}
                     onChange={() => setSelectedSlotId('custom')}
-                    className="text-indigo-600 focus:ring-indigo-500"
+                    className="text-blue-600 focus:ring-blue-500"
                   />
-                  <span className="text-xs font-bold text-slate-700">
+                  <span className="text-xs font-bold text-[#CBD5E1]">
                     Propose Custom Date & Time
                   </span>
                 </label>
               </div>
             ) : (
-              <p className="text-xs text-slate-500 mb-3 italic">
+              <p className="text-xs text-[#94A3B8] mb-3 italic">
                 Mentor has not published predefined slots yet. Please specify your agreed date and time:
               </p>
             )}
 
             {(selectedSlotId === 'custom' || slots.length === 0) && (
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
+              <div className="p-4 rounded-2xl bg-[#0B1024]/80 border border-white/10 space-y-3">
                 <Input
                   label="Session Date"
                   type="date"
@@ -279,10 +282,10 @@ const ScheduleSession = () => {
           {/* Step 2: Approved Campus Location */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="block text-sm font-bold text-slate-800">
+              <label className="block text-sm font-bold text-[#F8FAFC]">
                 2. Select an Approved Campus Meeting Location
               </label>
-              <div className="flex items-center gap-1 text-[11px] text-emerald-600 font-semibold">
+              <div className="flex items-center gap-1 text-[11px] text-emerald-400 font-semibold">
                 <Shield className="w-3.5 h-3.5" />
                 <span>Safe Zones</span>
               </div>
@@ -294,8 +297,8 @@ const ScheduleSession = () => {
                   key={loc._id}
                   className={`flex items-start gap-3 p-3.5 rounded-2xl border cursor-pointer transition-all ${
                     selectedLocation === loc.name
-                      ? 'border-indigo-600 bg-indigo-50/50 shadow-xs ring-1 ring-indigo-600'
-                      : 'border-slate-200 hover:bg-slate-50'
+                      ? 'border-blue-500 bg-blue-500/10 shadow-xs ring-1 ring-blue-500'
+                      : 'border-white/10 bg-[#0B1024]/60 hover:bg-[#0B1024]/90'
                   }`}
                 >
                   <input
@@ -303,11 +306,11 @@ const ScheduleSession = () => {
                     name="locationOption"
                     checked={selectedLocation === loc.name}
                     onChange={() => setSelectedLocation(loc.name)}
-                    className="mt-1 text-indigo-600 focus:ring-indigo-500"
+                    className="mt-1 text-blue-600 focus:ring-blue-500"
                   />
                   <div className="text-xs flex-1">
-                    <span className="font-bold text-slate-900 block">{loc.name}</span>
-                    <span className="text-slate-500">{loc.building} — {loc.description}</span>
+                    <span className="font-bold text-[#F8FAFC] block">{loc.name}</span>
+                    <span className="text-[#94A3B8]">{loc.building} — {loc.description}</span>
                   </div>
                 </label>
               ))}
@@ -316,7 +319,7 @@ const ScheduleSession = () => {
 
           {/* Step 3: Preparation Notes */}
           <div>
-            <label className="block text-sm font-bold text-slate-800 mb-1.5">
+            <label className="block text-sm font-bold text-[#F8FAFC] mb-1.5">
               3. Preparation Notes (Optional)
             </label>
             <textarea
@@ -324,11 +327,11 @@ const ScheduleSession = () => {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="e.g. I will bring my laptop and problem sheet..."
-              className="block w-full rounded-xl border border-slate-200 text-sm py-2 px-3.5 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+              className="block w-full rounded-xl border border-white/10 text-sm py-2 px-3.5 bg-[#0B1024]/90 text-[#F8FAFC] placeholder:text-[#94A3B8]/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
             />
           </div>
 
-          <div className="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
+          <div className="pt-4 border-t border-white/10 flex items-center justify-end gap-3">
             <Link to="/requests">
               <Button variant="outline" size="md">
                 Cancel

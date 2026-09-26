@@ -10,13 +10,13 @@ const Loading = ({ fullScreen = false, text = 'Loading...', size = 'md' }) => {
 
   if (fullScreen) {
     return (
-      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm">
-        <div className="flex flex-col items-center p-6 rounded-2xl bg-white shadow-xl border border-slate-100 max-w-xs text-center">
+      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#050713]/85 backdrop-blur-md">
+        <div className="flex flex-col items-center p-6 rounded-2xl bg-[#080B18] shadow-2xl border border-white/10 max-w-xs text-center">
           <div className="relative mb-3">
-            <div className="w-12 h-12 rounded-full border-4 border-indigo-100 border-t-indigo-600 animate-spin" />
+            <div className="w-12 h-12 rounded-full border-4 border-blue-500/20 border-t-[#3B82F6] animate-spin" />
           </div>
-          <p className="text-sm font-medium text-slate-700">{text}</p>
-          <p className="text-xs text-slate-400 mt-1">Campus Skill Network</p>
+          <p className="text-sm font-semibold text-[#F8FAFC]">{text}</p>
+          <p className="text-xs text-[#94A3B8] mt-1">Campus Skill Network</p>
         </div>
       </div>
     );
@@ -24,8 +24,8 @@ const Loading = ({ fullScreen = false, text = 'Loading...', size = 'md' }) => {
 
   return (
     <div className="flex flex-col items-center justify-center py-10 px-4 text-center">
-      <Loader2 className={`${sizeClasses[size] || sizeClasses.md} animate-spin text-indigo-600 mb-2`} />
-      {text && <p className="text-sm text-slate-500 font-medium">{text}</p>}
+      <Loader2 className={`${sizeClasses[size] || sizeClasses.md} animate-spin text-[#3B82F6] mb-2`} />
+      {text && <p className="text-sm text-[#94A3B8] font-medium">{text}</p>}
     </div>
   );
 };

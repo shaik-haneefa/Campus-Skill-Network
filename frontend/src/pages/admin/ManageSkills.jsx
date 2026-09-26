@@ -93,16 +93,16 @@ const ManageSkills = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
         <div>
-          <span className="text-xs font-extrabold uppercase tracking-widest text-amber-600 block mb-1">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-amber-400 block mb-1">
             Curriculum & Taxonomy
           </span>
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
             Manage Campus Skills
           </h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-[#94A3B8] mt-1">
             Add, update, or curate the skill subjects offered across campus departments
           </p>
         </div>
@@ -118,7 +118,7 @@ const ManageSkills = () => {
         </div>
 
         <div className="lg:col-span-9 space-y-6">
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-card flex gap-2">
+          <div className="bg-[#080B18]/80 backdrop-blur-xl rounded-3xl p-6 border border-white/10 shadow-2xl flex gap-2">
             <Input
               placeholder="Search skill catalog..."
               icon={Search}
@@ -131,13 +131,13 @@ const ManageSkills = () => {
             </Button>
           </div>
 
-          <div className="bg-white rounded-3xl border border-slate-200/80 shadow-card overflow-hidden">
+          <div className="bg-[#080B18]/80 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl overflow-hidden">
             {loading ? (
               <Loading text="Loading skills catalog..." />
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider">
+                  <thead className="bg-[#0B1024]/80 border-b border-white/10 text-[#94A3B8] font-bold uppercase tracking-wider">
                     <tr>
                       <th className="px-6 py-4">Skill Name</th>
                       <th className="px-6 py-4">Category</th>
@@ -146,28 +146,28 @@ const ManageSkills = () => {
                       <th className="px-6 py-4 text-right">Actions</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100">
+                  <tbody className="divide-y divide-white/5">
                     {skills.map((sk) => (
-                      <tr key={sk._id} className="hover:bg-slate-50/50">
-                        <td className="px-6 py-4 font-bold text-slate-900 whitespace-nowrap">
+                      <tr key={sk._id} className="hover:bg-white/[0.02] transition-colors">
+                        <td className="px-6 py-4 font-bold text-[#F8FAFC] whitespace-nowrap">
                           {sk.name}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <span className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-700 font-semibold border border-indigo-100">
+                          <span className="px-2.5 py-1 rounded-lg bg-blue-500/10 text-[#60A5FA] font-semibold border border-blue-500/20">
                             {sk.category}
                           </span>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap font-semibold text-slate-700">
+                        <td className="px-6 py-4 whitespace-nowrap font-semibold text-[#CBD5E1]">
                           {sk.mentorCount || 0} students
                         </td>
-                        <td className="px-6 py-4 max-w-sm truncate text-slate-500">
+                        <td className="px-6 py-4 max-w-sm truncate text-[#94A3B8]">
                           {sk.description || '—'}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right space-x-2">
                           <button
                             type="button"
                             onClick={() => handleOpenEdit(sk)}
-                            className="p-1.5 text-slate-400 hover:text-indigo-600 rounded-lg hover:bg-indigo-50"
+                            className="p-1.5 text-[#94A3B8] hover:text-[#60A5FA] rounded-lg hover:bg-white/5 transition-colors"
                             title="Edit"
                           >
                             <Edit2 className="w-4 h-4" />
@@ -175,7 +175,7 @@ const ManageSkills = () => {
                           <button
                             type="button"
                             onClick={() => handleDelete(sk._id)}
-                            className="p-1.5 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-rose-50"
+                            className="p-1.5 text-[#94A3B8] hover:text-rose-400 rounded-lg hover:bg-rose-500/10 transition-colors"
                             title="Delete"
                           >
                             <Trash2 className="w-4 h-4" />
@@ -199,7 +199,7 @@ const ManageSkills = () => {
       >
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="p-3 rounded-xl bg-rose-50 border border-rose-100 text-rose-700 text-xs">
+            <div className="p-3 rounded-xl bg-rose-950/40 border border-rose-500/30 text-rose-400 text-xs">
               {error}
             </div>
           )}
@@ -213,16 +213,16 @@ const ManageSkills = () => {
           />
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1.5">
+            <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5 uppercase tracking-wider">
               Category
             </label>
             <select
               value={form.category}
               onChange={(e) => setForm({ ...form, category: e.target.value })}
-              className="block w-full rounded-xl border border-slate-200 text-sm py-2.5 px-3.5 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+              className="block w-full rounded-xl border border-white/10 text-sm py-2.5 px-3.5 bg-[#0B1024]/90 text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
             >
               {categories.map((c) => (
-                <option key={c} value={c}>
+                <option key={c} value={c} className="bg-[#080B18]">
                   {c}
                 </option>
               ))}
@@ -230,7 +230,7 @@ const ManageSkills = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1.5">
+            <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5 uppercase tracking-wider">
               Description
             </label>
             <textarea
@@ -238,11 +238,11 @@ const ManageSkills = () => {
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               placeholder="What topics or syllabus does this skill cover?"
-              className="block w-full rounded-xl border border-slate-200 text-sm py-2.5 px-3.5 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+              className="block w-full rounded-xl border border-white/10 text-sm py-2.5 px-3.5 bg-[#0B1024]/90 text-[#F8FAFC] placeholder:text-[#94A3B8]/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
             />
           </div>
 
-          <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
+          <div className="flex justify-end gap-2 pt-3 border-t border-white/10">
             <Button
               variant="outline"
               size="sm"

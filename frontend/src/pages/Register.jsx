@@ -44,7 +44,6 @@ const Register = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear field-level error on change
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
@@ -101,42 +100,46 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
-      <div className="max-w-xl w-full">
+    <div className="min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-[#050713] relative overflow-hidden">
+      {/* Background ambient glows */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/15 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="max-w-xl w-full relative z-10">
         {/* Header */}
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2 mb-4 group">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform border border-white/15">
               <GraduationCap className="w-7 h-7" />
             </div>
           </Link>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-black text-[#F8FAFC] tracking-tight">
             Join Campus Skill Network
           </h2>
-          <p className="mt-2 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-[#94A3B8]">
             Connect, learn, share, and grow with your fellow university peers
           </p>
         </div>
 
         {/* Form Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200/80">
+        <div className="bg-[#080B18]/80 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 shadow-2xl border border-white/10">
           {generalError && (
-            <div className="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-100 flex items-start gap-3 text-rose-700 text-sm">
-              <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5 text-rose-500" />
+            <div className="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-start gap-3 text-rose-300 text-sm">
+              <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5 text-rose-400" />
               <span>{generalError}</span>
             </div>
           )}
 
           {successMsg && (
-            <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-100 flex items-start gap-3 text-emerald-800 text-sm font-medium">
-              <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5 text-emerald-500" />
+            <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-start gap-3 text-emerald-300 text-sm font-medium">
+              <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5 text-emerald-400" />
               <span>{successMsg}</span>
             </div>
           )}
 
           {/* College Domain Banner */}
-          <div className="mb-6 p-3.5 rounded-xl bg-indigo-50/70 border border-indigo-100/80 flex items-center gap-2.5 text-xs text-indigo-700 font-medium">
-            <GraduationCap className="w-4 h-4 text-indigo-600 flex-shrink-0" />
+          <div className="mb-6 p-3.5 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center gap-2.5 text-xs text-[#60A5FA] font-medium">
+            <GraduationCap className="w-4 h-4 text-[#38BDF8] flex-shrink-0" />
             <span>Please use your official college email address (e.g. yourname@college.edu).</span>
           </div>
 
@@ -179,17 +182,17 @@ const Register = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                  Department <span className="text-rose-500">*</span>
+                <label className="block text-sm font-semibold text-[#CBD5E1] mb-1.5">
+                  Department <span className="text-rose-400">*</span>
                 </label>
                 <select
                   name="department"
                   value={formData.department}
                   onChange={handleChange}
-                  className="block w-full rounded-xl border border-slate-200 text-sm py-2.5 px-3.5 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+                  className="block w-full rounded-xl border border-white/15 text-sm py-2.5 px-3.5 bg-[#080B18] text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/25 focus:border-[#3B82F6]"
                 >
                   {departmentsList.map((dept) => (
-                    <option key={dept} value={dept}>
+                    <option key={dept} value={dept} className="bg-[#080B18] text-[#F8FAFC]">
                       {dept}
                     </option>
                   ))}
@@ -197,17 +200,17 @@ const Register = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                  Academic Year <span className="text-rose-500">*</span>
+                <label className="block text-sm font-semibold text-[#CBD5E1] mb-1.5">
+                  Academic Year <span className="text-rose-400">*</span>
                 </label>
                 <select
                   name="year"
                   value={formData.year}
                   onChange={handleChange}
-                  className="block w-full rounded-xl border border-slate-200 text-sm py-2.5 px-3.5 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+                  className="block w-full rounded-xl border border-white/15 text-sm py-2.5 px-3.5 bg-[#080B18] text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#3B82F6]/25 focus:border-[#3B82F6]"
                 >
                   {yearsList.map((yr) => (
-                    <option key={yr} value={yr}>
+                    <option key={yr} value={yr} className="bg-[#080B18] text-[#F8FAFC]">
                       {yr}
                     </option>
                   ))}
@@ -230,7 +233,7 @@ const Register = () => {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="text-slate-400 hover:text-slate-600"
+                    className="text-[#94A3B8] hover:text-[#F8FAFC]"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
@@ -254,15 +257,15 @@ const Register = () => {
               type="submit"
               size="lg"
               isLoading={loading}
-              className="w-full mt-4 shadow-md shadow-indigo-600/20"
+              className="w-full mt-4"
             >
               Create Student Account
             </Button>
           </form>
 
-          <div className="mt-6 text-center text-xs text-slate-500">
+          <div className="mt-6 text-center text-xs text-[#94A3B8]">
             Already have a registered account?{' '}
-            <Link to="/login" className="font-bold text-indigo-600 hover:text-indigo-800">
+            <Link to="/login" className="font-bold text-[#60A5FA] hover:text-[#93C5FD]">
               Sign In Here
             </Link>
           </div>

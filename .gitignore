@@ -1,21 +1,29 @@
 # Dependencies
 node_modules/
+*/node_modules/
 .pnp
 .pnp.js
 
 # Testing
 coverage/
 
-# Production
+# Production & Build
 build/
 dist/
+*/dist/
+.vercel/
 
-# Environment files
+# Environment files & secrets
 .env
+.env.*
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+*.env
+*.env.local
+!.env.example
+!*/.env.example
 
 # Logs
 npm-debug.log*

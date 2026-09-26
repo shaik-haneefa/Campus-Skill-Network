@@ -17,31 +17,31 @@ import {
 import { useAuth } from '../context/AuthContext';
 
 const Sidebar = ({ isAdminPanel = false }) => {
-  const { user, isAdmin, unreadNotifications } = useAuth();
+  const { user, isAdmin } = useAuth();
 
   const linkClasses = ({ isActive }) =>
-    `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors duration-150 ${
+    `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
       isActive
-        ? 'bg-indigo-50 text-indigo-600 font-bold shadow-xs'
-        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+        ? 'bg-blue-600/15 text-[#60A5FA] border border-blue-500/30 font-bold shadow-sm'
+        : 'text-[#CBD5E1] hover:text-[#F8FAFC] hover:bg-white/[0.05]'
     }`;
 
   const adminLinkClasses = ({ isActive }) =>
-    `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors duration-150 ${
+    `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
       isActive
-        ? 'bg-amber-50 text-amber-800 font-bold shadow-xs'
-        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+        ? 'bg-purple-600/15 text-[#A78BFA] border border-purple-500/30 font-bold shadow-sm'
+        : 'text-[#CBD5E1] hover:text-[#F8FAFC] hover:bg-white/[0.05]'
     }`;
 
   if (isAdminPanel) {
     return (
-      <aside className="w-full md:w-64 bg-white rounded-2xl border border-slate-200/80 p-4 shadow-card h-fit space-y-1">
-        <div className="px-3.5 py-2 mb-2 border-b border-slate-100">
-          <div className="flex items-center gap-2 text-amber-700 font-bold text-xs uppercase tracking-wider">
-            <Shield className="w-4 h-4 text-amber-500" />
+      <aside className="w-full md:w-64 bg-[#080B18]/80 backdrop-blur-xl rounded-2xl border border-white/10 p-4 shadow-2xl h-fit space-y-1">
+        <div className="px-3.5 py-2 mb-2 border-b border-white/10">
+          <div className="flex items-center gap-2 text-[#A78BFA] font-bold text-xs uppercase tracking-wider">
+            <Shield className="w-4 h-4 text-[#7C3AED]" />
             Admin Console
           </div>
-          <p className="text-xs text-slate-400 mt-0.5">Platform Administration</p>
+          <p className="text-xs text-[#94A3B8] mt-0.5">Platform Administration</p>
         </div>
 
         <NavLink to="/admin" end className={adminLinkClasses}>
@@ -61,7 +61,7 @@ const Sidebar = ({ isAdminPanel = false }) => {
           Campus Locations
         </NavLink>
 
-        <div className="pt-3 mt-3 border-t border-slate-100">
+        <div className="pt-3 mt-3 border-t border-white/10">
           <NavLink to="/dashboard" className={linkClasses}>
             <LayoutDashboard className="w-4 h-4" />
             Back to Student App
@@ -72,22 +72,22 @@ const Sidebar = ({ isAdminPanel = false }) => {
   }
 
   return (
-    <aside className="w-full md:w-64 bg-white rounded-2xl border border-slate-200/80 p-4 shadow-card h-fit space-y-1">
-      <div className="px-3.5 py-2 mb-2 border-b border-slate-100 flex items-center gap-3">
+    <aside className="w-full md:w-64 bg-[#080B18]/80 backdrop-blur-xl rounded-2xl border border-white/10 p-4 shadow-2xl h-fit space-y-1">
+      <div className="px-3.5 py-2 mb-2 border-b border-white/10 flex items-center gap-3">
         {user?.profileImage ? (
           <img
             src={user.profileImage}
             alt={user.name}
-            className="w-10 h-10 rounded-xl object-cover border border-indigo-100"
+            className="w-10 h-10 rounded-xl object-cover border border-white/15"
           />
         ) : (
-          <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white font-bold flex items-center justify-center text-sm">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-bold flex items-center justify-center text-sm shadow-md">
             {user?.name ? user.name[0] : 'U'}
           </div>
         )}
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-bold text-slate-900 truncate">{user?.name}</p>
-          <p className="text-xs text-slate-400 truncate">{user?.department}</p>
+          <p className="text-sm font-bold text-[#F8FAFC] truncate">{user?.name}</p>
+          <p className="text-xs text-[#94A3B8] truncate">{user?.department}</p>
         </div>
       </div>
 
@@ -132,9 +132,9 @@ const Sidebar = ({ isAdminPanel = false }) => {
       </NavLink>
 
       {isAdmin && (
-        <div className="pt-2 mt-2 border-t border-slate-100">
+        <div className="pt-2 mt-2 border-t border-white/10">
           <NavLink to="/admin" className={adminLinkClasses}>
-            <Shield className="w-4 h-4 text-amber-500" />
+            <Shield className="w-4 h-4 text-[#7C3AED]" />
             Admin Panel
           </NavLink>
         </div>

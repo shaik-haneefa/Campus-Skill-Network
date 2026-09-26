@@ -40,7 +40,7 @@ const RatingStars = ({
                 className={`${starSizes[size] || starSizes.md} ${
                   isFilled
                     ? 'text-amber-400 fill-amber-400'
-                    : 'text-slate-200 fill-slate-100'
+                    : 'text-slate-700 fill-slate-800'
                 }`}
               />
             </button>
@@ -49,13 +49,13 @@ const RatingStars = ({
       </div>
 
       {rating !== undefined && !interactive && (
-        <span className="text-xs font-semibold text-slate-700">
+        <span className="text-xs font-semibold text-[#CBD5E1]">
           {Number(rating).toFixed(1)}
         </span>
       )}
 
       {count !== undefined && !interactive && (
-        <span className="text-xs text-slate-400">({count})</span>
+        <span className="text-xs text-[#94A3B8]">({count})</span>
       )}
     </div>
   );

@@ -82,6 +82,9 @@ const getUserById = async (req, res) => {
       reviews,
     });
   } catch (error) {
+    if (error.kind === 'ObjectId' || error.name === 'CastError') {
+      return res.status(404).json({ message: 'Mentor not found' });
+    }
     res.status(500).json({ message: error.message || 'Server error fetching student profile' });
   }
 };

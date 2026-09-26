@@ -58,34 +58,34 @@ const Sessions = () => {
   const filteredSessions = sessions.filter((s) => s.status === activeTab);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
       {/* Header */}
       <div className="mb-8">
-        <span className="text-xs font-extrabold uppercase tracking-widest text-indigo-600 block mb-1">
+        <span className="text-xs font-extrabold uppercase tracking-widest text-[#38BDF8] block mb-1">
           Peer Learning Calendar
         </span>
-        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
           Mentorship Sessions
         </h1>
-        <p className="text-sm text-slate-500 mt-1">
+        <p className="text-sm text-[#94A3B8] mt-1">
           Manage your scheduled, past, and cancelled 1-on-1 study sessions
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-3 border-b border-slate-200 mb-8">
+      <div className="flex items-center gap-3 border-b border-white/10 mb-8">
         <button
           type="button"
           onClick={() => setActiveTab('scheduled')}
-          className={`pb-3 text-sm font-bold flex items-center gap-2 border-b-2 transition-colors ${
+          className={`pb-3.5 text-sm font-bold flex items-center gap-2 border-b-2 transition-all ${
             activeTab === 'scheduled'
-              ? 'border-indigo-600 text-indigo-600'
-              : 'border-transparent text-slate-500 hover:text-slate-800'
+              ? 'border-blue-500 text-[#60A5FA]'
+              : 'border-transparent text-[#94A3B8] hover:text-[#F8FAFC]'
           }`}
         >
           <Calendar className="w-4 h-4" />
           <span>Upcoming</span>
-          <span className="px-2 py-0.5 rounded-full text-xs bg-indigo-50 text-indigo-700 font-bold">
+          <span className="px-2 py-0.5 rounded-full text-xs bg-blue-500/15 text-[#60A5FA] font-bold border border-blue-500/20">
             {sessions.filter((s) => s.status === 'scheduled').length}
           </span>
         </button>
@@ -93,15 +93,15 @@ const Sessions = () => {
         <button
           type="button"
           onClick={() => setActiveTab('completed')}
-          className={`pb-3 text-sm font-bold flex items-center gap-2 border-b-2 transition-colors ${
+          className={`pb-3.5 text-sm font-bold flex items-center gap-2 border-b-2 transition-all ${
             activeTab === 'completed'
-              ? 'border-indigo-600 text-indigo-600'
-              : 'border-transparent text-slate-500 hover:text-slate-800'
+              ? 'border-blue-500 text-[#60A5FA]'
+              : 'border-transparent text-[#94A3B8] hover:text-[#F8FAFC]'
           }`}
         >
           <CheckCircle2 className="w-4 h-4" />
           <span>Completed</span>
-          <span className="px-2 py-0.5 rounded-full text-xs bg-emerald-50 text-emerald-700 font-bold">
+          <span className="px-2 py-0.5 rounded-full text-xs bg-emerald-950/60 text-emerald-400 font-bold border border-emerald-500/30">
             {sessions.filter((s) => s.status === 'completed').length}
           </span>
         </button>
@@ -109,15 +109,15 @@ const Sessions = () => {
         <button
           type="button"
           onClick={() => setActiveTab('cancelled')}
-          className={`pb-3 text-sm font-bold flex items-center gap-2 border-b-2 transition-colors ${
+          className={`pb-3.5 text-sm font-bold flex items-center gap-2 border-b-2 transition-all ${
             activeTab === 'cancelled'
-              ? 'border-indigo-600 text-indigo-600'
-              : 'border-transparent text-slate-500 hover:text-slate-800'
+              ? 'border-blue-500 text-[#60A5FA]'
+              : 'border-transparent text-[#94A3B8] hover:text-[#F8FAFC]'
           }`}
         >
           <Ban className="w-4 h-4" />
           <span>Cancelled</span>
-          <span className="px-2 py-0.5 rounded-full text-xs bg-slate-100 text-slate-600 font-bold">
+          <span className="px-2 py-0.5 rounded-full text-xs bg-white/[0.06] text-[#CBD5E1] font-bold border border-white/10">
             {sessions.filter((s) => s.status === 'cancelled').length}
           </span>
         </button>
@@ -140,12 +140,12 @@ const Sessions = () => {
           ))}
         </div>
       ) : (
-        <div className="py-16 text-center rounded-3xl bg-white border border-slate-200/80 p-8 shadow-card">
-          <Calendar className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-slate-800">
+        <div className="py-16 text-center rounded-3xl bg-[#080B18]/80 backdrop-blur-xl border border-white/10 p-8 shadow-2xl">
+          <Calendar className="w-12 h-12 text-[#60A5FA]/30 mx-auto mb-3" />
+          <h3 className="text-base font-bold text-[#F8FAFC]">
             No {activeTab} sessions found
           </h3>
-          <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+          <p className="text-xs text-[#94A3B8] mt-1 max-w-sm mx-auto">
             {activeTab === 'scheduled'
               ? 'You have no pending sessions on your calendar. Request a mentor or accept pending requests to get started.'
               : `You have no ${activeTab} sessions recorded.`}

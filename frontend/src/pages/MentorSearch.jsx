@@ -136,22 +136,22 @@ const MentorSearch = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
       {/* Header */}
       <div className="mb-8">
-        <span className="text-xs font-extrabold uppercase tracking-widest text-indigo-600 block mb-1">
+        <span className="text-xs font-extrabold uppercase tracking-widest text-[#38BDF8] block mb-1">
           Campus Peer Directory
         </span>
-        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
           Find a Peer Mentor
         </h1>
-        <p className="text-sm text-slate-500 mt-1">
+        <p className="text-sm text-[#94A3B8] mt-1">
           Connect 1-on-1 with verified students across campus who know the skills you want to learn
         </p>
       </div>
 
       {/* Filter and Search Toolbar */}
-      <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-card mb-8 space-y-4">
+      <div className="bg-[#080B18]/80 backdrop-blur-xl rounded-3xl p-6 border border-white/10 shadow-2xl mb-8 space-y-4">
         <form onSubmit={handleSearchSubmit} className="flex gap-2">
           <Input
             placeholder="Search by student name, skill (e.g. Python, DSA, Debate), or keyword..."
@@ -168,16 +168,16 @@ const MentorSearch = () => {
         {/* Dropdowns row */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
           <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-1">
+            <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5 uppercase tracking-wider">
               Category
             </label>
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="block w-full rounded-xl border border-slate-200 text-xs py-2 px-3 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+              className="block w-full rounded-xl border border-white/10 text-xs py-2 px-3 bg-[#0B1024]/90 text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
             >
               {categories.map((c) => (
-                <option key={c} value={c}>
+                <option key={c} value={c} className="bg-[#080B18] text-[#F8FAFC]">
                   {c}
                 </option>
               ))}
@@ -185,16 +185,16 @@ const MentorSearch = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-1">
+            <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5 uppercase tracking-wider">
               Department
             </label>
             <select
               value={selectedDepartment}
               onChange={(e) => setSelectedDepartment(e.target.value)}
-              className="block w-full rounded-xl border border-slate-200 text-xs py-2 px-3 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+              className="block w-full rounded-xl border border-white/10 text-xs py-2 px-3 bg-[#0B1024]/90 text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
             >
               {departmentsList.map((d) => (
-                <option key={d} value={d}>
+                <option key={d} value={d} className="bg-[#080B18] text-[#F8FAFC]">
                   {d}
                 </option>
               ))}
@@ -202,17 +202,17 @@ const MentorSearch = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-1">
+            <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5 uppercase tracking-wider">
               Sort By
             </label>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="block w-full rounded-xl border border-slate-200 text-xs py-2 px-3 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+              className="block w-full rounded-xl border border-white/10 text-xs py-2 px-3 bg-[#0B1024]/90 text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
             >
-              <option value="rating">Highest Rated Mentor (Default)</option>
-              <option value="sessions">Most Completed Sessions</option>
-              <option value="newest">Recently Joined Peers</option>
+              <option value="rating" className="bg-[#080B18] text-[#F8FAFC]">Highest Rated Mentor (Default)</option>
+              <option value="sessions" className="bg-[#080B18] text-[#F8FAFC]">Most Completed Sessions</option>
+              <option value="newest" className="bg-[#080B18] text-[#F8FAFC]">Recently Joined Peers</option>
             </select>
           </div>
         </div>
@@ -223,8 +223,8 @@ const MentorSearch = () => {
         <Loading text="Finding campus mentors..." />
       ) : mentors.length > 0 ? (
         <>
-          <div className="flex items-center justify-between text-xs text-slate-500 mb-4 px-1">
-            <span>Showing {mentors.length} student mentors</span>
+          <div className="flex items-center justify-between text-xs text-[#94A3B8] mb-4 px-1">
+            <span>Showing <strong className="text-[#F8FAFC]">{mentors.length}</strong> student mentors</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -238,10 +238,10 @@ const MentorSearch = () => {
           </div>
         </>
       ) : (
-        <div className="py-16 text-center rounded-3xl bg-white border border-slate-200/80 p-8 shadow-card">
-          <Users className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-slate-800">No mentors found</h3>
-          <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto mb-4">
+        <div className="py-16 text-center rounded-3xl bg-[#080B18]/80 backdrop-blur-xl border border-white/10 p-8 shadow-2xl">
+          <Users className="w-12 h-12 text-[#60A5FA]/40 mx-auto mb-3" />
+          <h3 className="text-base font-bold text-[#F8FAFC]">No mentors found</h3>
+          <p className="text-xs text-[#94A3B8] mt-1 max-w-sm mx-auto mb-4">
             Try adjusting your search query, selecting "All Departments", or checking another category.
           </p>
           <Button
@@ -267,33 +267,33 @@ const MentorSearch = () => {
       >
         {requestSuccess ? (
           <div className="text-center py-6">
-            <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-3">
+            <div className="w-12 h-12 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto mb-3">
               <CheckCircle2 className="w-6 h-6" />
             </div>
-            <h4 className="text-base font-bold text-slate-900 mb-1">Request Sent!</h4>
-            <p className="text-xs text-slate-600 mb-4">{requestSuccess}</p>
+            <h4 className="text-base font-bold text-[#F8FAFC] mb-1">Request Sent!</h4>
+            <p className="text-xs text-[#94A3B8] mb-4">{requestSuccess}</p>
           </div>
         ) : (
           <form onSubmit={handleSendRequest} className="space-y-4">
             {requestError && (
-              <div className="p-3 rounded-xl bg-rose-50 border border-rose-100 text-rose-700 text-xs flex items-center gap-2">
-                <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-500" />
+              <div className="p-3 rounded-xl bg-rose-950/40 border border-rose-500/30 text-rose-400 text-xs flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-400" />
                 <span>{requestError}</span>
               </div>
             )}
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                Which skill do you want to learn? <span className="text-rose-500">*</span>
+              <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5 uppercase tracking-wider">
+                Which skill do you want to learn? <span className="text-rose-400">*</span>
               </label>
               <select
                 value={requestForm.skill}
                 onChange={(e) => setRequestForm({ ...requestForm, skill: e.target.value })}
-                className="block w-full rounded-xl border border-slate-200 text-sm py-2.5 px-3 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+                className="block w-full rounded-xl border border-white/10 text-sm py-2.5 px-3 bg-[#0B1024]/90 text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
                 required
               >
                 {selectedMentor?.skills?.map((sk, idx) => (
-                  <option key={idx} value={sk.name}>
+                  <option key={idx} value={sk.name} className="bg-[#080B18] text-[#F8FAFC]">
                     {sk.name} ({sk.level})
                   </option>
                 ))}
@@ -301,15 +301,15 @@ const MentorSearch = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                Message to Mentor <span className="text-rose-500">*</span>
+              <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5 uppercase tracking-wider">
+                Message to Mentor <span className="text-rose-400">*</span>
               </label>
               <textarea
                 rows={3}
                 value={requestForm.message}
                 onChange={(e) => setRequestForm({ ...requestForm, message: e.target.value })}
                 placeholder="Explain what specific concept you need help with..."
-                className="block w-full rounded-xl border border-slate-200 text-sm py-2.5 px-3.5 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+                className="block w-full rounded-xl border border-white/10 text-sm py-2.5 px-3.5 bg-[#0B1024]/90 text-[#F8FAFC] placeholder:text-[#94A3B8]/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
                 required
               />
             </div>
@@ -330,7 +330,7 @@ const MentorSearch = () => {
               />
             </div>
 
-            <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
+            <div className="flex justify-end gap-2 pt-3 border-t border-white/10">
               <Button
                 variant="outline"
                 size="sm"

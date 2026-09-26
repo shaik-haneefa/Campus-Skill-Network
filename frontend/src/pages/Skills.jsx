@@ -89,17 +89,21 @@ const Skills = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
+      {/* Background radial atmosphere glow */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-40 right-10 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none -z-10" />
+
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <span className="text-xs font-extrabold uppercase tracking-widest text-indigo-600 block mb-1">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-[#38BDF8] block mb-1">
             Campus Knowledge Exchange
           </span>
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
             Explore Campus Skills
           </h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-[#94A3B8] mt-1">
             Discover what students on campus are learning and teaching
           </p>
         </div>
@@ -116,7 +120,7 @@ const Skills = () => {
       </div>
 
       {/* Search & Category Filter Bar */}
-      <div className="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-card mb-8 space-y-4">
+      <div className="bg-[rgba(15,23,42,0.72)] backdrop-blur-xl rounded-3xl p-5 border border-[rgba(148,163,184,0.16)] shadow-2xl mb-8 space-y-4">
         <form onSubmit={onSearchSubmit} className="flex gap-2">
           <Input
             placeholder="Search skills e.g. Python, Java, Guitar, Public Speaking..."
@@ -131,16 +135,16 @@ const Skills = () => {
         </form>
 
         {/* Category Pill Filters */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 pt-1 scrollbar-none">
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-1 scrollbar-none">
           {categories.map((cat) => (
             <button
               key={cat}
               type="button"
               onClick={() => onCategoryClick(cat)}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
                 selectedCategory === cat
-                  ? 'bg-indigo-600 text-white shadow-xs'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200/70 hover:text-slate-900'
+                  ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-md shadow-blue-500/25 border border-blue-400/30'
+                  : 'bg-[rgba(11,16,36,0.6)] text-[#94A3B8] hover:bg-white/[0.08] hover:text-[#F8FAFC] border border-[rgba(148,163,184,0.16)]'
               }`}
             >
               {cat}
@@ -159,10 +163,10 @@ const Skills = () => {
           ))}
         </div>
       ) : (
-        <div className="py-16 text-center rounded-3xl bg-white border border-slate-200/80 p-8 shadow-card">
-          <Sparkles className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-slate-800">No skills found</h3>
-          <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto mb-6">
+        <div className="py-16 text-center rounded-3xl bg-[rgba(15,23,42,0.72)] backdrop-blur-xl border border-[rgba(148,163,184,0.16)] p-8 shadow-2xl">
+          <Sparkles className="w-12 h-12 text-[#60A5FA]/40 mx-auto mb-3" />
+          <h3 className="text-base font-bold text-[#F8FAFC]">No skills found</h3>
+          <p className="text-xs text-[#94A3B8] mt-1 max-w-sm mx-auto mb-6">
             We couldn't find any skill matching "{search}" in this category. Propose adding it to the catalog!
           </p>
           {isAuthenticated && (
@@ -181,7 +185,7 @@ const Skills = () => {
       >
         <form onSubmit={handleCreateSkill} className="space-y-4">
           {modalError && (
-            <p className="text-xs text-rose-600 bg-rose-50 p-2.5 rounded-lg border border-rose-100">
+            <p className="text-xs text-rose-400 bg-rose-950/40 p-2.5 rounded-lg border border-rose-500/30">
               {modalError}
             </p>
           )}
@@ -195,16 +199,16 @@ const Skills = () => {
           />
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1.5">
+            <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5 uppercase tracking-wider">
               Category
             </label>
             <select
               value={newSkill.category}
               onChange={(e) => setNewSkill({ ...newSkill, category: e.target.value })}
-              className="block w-full rounded-xl border border-slate-200 text-sm py-2.5 px-3.5 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+              className="block w-full rounded-xl border border-white/10 text-sm py-2.5 px-3.5 bg-[#0B1024]/90 text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
             >
               {categories.filter((c) => c !== 'All').map((c) => (
-                <option key={c} value={c}>
+                <option key={c} value={c} className="bg-[#080B18] text-[#F8FAFC]">
                   {c}
                 </option>
               ))}
@@ -212,7 +216,7 @@ const Skills = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1.5">
+            <label className="block text-xs font-semibold text-[#CBD5E1] mb-1.5 uppercase tracking-wider">
               Description
             </label>
             <textarea
@@ -220,11 +224,11 @@ const Skills = () => {
               value={newSkill.description}
               onChange={(e) => setNewSkill({ ...newSkill, description: e.target.value })}
               placeholder="Brief description of this skill and what students can expect to learn..."
-              className="block w-full rounded-xl border border-slate-200 text-sm py-2.5 px-3.5 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600"
+              className="block w-full rounded-xl border border-white/10 text-sm py-2.5 px-3.5 bg-[#0B1024]/90 text-[#F8FAFC] placeholder:text-[#94A3B8]/60 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
             />
           </div>
 
-          <div className="flex justify-end gap-2 pt-2">
+          <div className="flex justify-end gap-2 pt-3 border-t border-white/10">
             <Button
               variant="outline"
               size="sm"
